@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import Firebase
 
-class FirstViewController: UIViewController {
+class RmapController: UIViewController {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterPickerView: UIPickerView!
@@ -38,13 +38,9 @@ class FirstViewController: UIViewController {
         // Creates a marker in the center of the map.
         var ref: DatabaseReference!
         //var markers = [GMSMarker]()
-        let node = "AcademicBuildings"
+        let node = "ResidentHalls"
         ref = Database.database().reference()
         getFromDatabase(ref: ref, node: node, length: 18, mapView: theMapView)
-        getFromDatabase(ref: ref, node: "ResidentHalls", length: 18, mapView: theMapView)
-        getFromDatabase(ref: ref, node: "FoodPlaces", length: 14, mapView: theMapView)
-       getFromDatabase(ref: ref, node: "Other", length: 4, mapView: theMapView)
-        getFromDatabase(ref: ref, node: "Recreation", length: 7, mapView: theMapView)
 //        for i in 0...18 {
 //            ref.child(node).child(String(i)).observeSingleEvent(of: .value, with: { (snapshot) in
 //                let value = snapshot.value as? NSDictionary
@@ -94,7 +90,7 @@ class FirstViewController: UIViewController {
         var length:Int? = 1
         ref.child("Config").observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
-                length = (value?["AcademicBuildingsLength"] as? Int ?? 0)
+                length = (value?["ResidentHallsLength"] as? Int ?? 0)
                 print(length!)
             })
         print(length!)
@@ -131,4 +127,6 @@ class FirstViewController: UIViewController {
     }
 
 }
+
+
 
